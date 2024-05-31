@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Delivery</title>
+
+    <!-- Favicons -->
+    <link href="{% static 'image/869a224406f35106d1637648723e4745.png' %}" rel="icon">
+    <link href="{% static 'image/869a224406f35106d1637648723e4745.png' %}" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Amatic+SC:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap "
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    {% include 'partials/navbar.html' %}
+    {% block content %}
+
+    {% endblock content %}
+    {% include 'partials/footer.html' %}
+
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
+
+    <div id="preloader"></div>
+
+    <script>
+        document.getElementById('num_trucks').addEventListener('input', function () {
+            const numTrucks = this.value;
+            const trucksDiv = document.getElementById('trucks');
+            trucksDiv.innerHTML = '';
+            for (let i = 0; i < numTrucks; i++) {
+                trucksDiv.innerHTML += `
+                                        <input type="number" id="truck_capacity_${i}" name="truck_capacity_${i}" class="form-control mt-2 mb-2 text-center" placeholder="Truck ${i + 1} Capacity (kg)" min="50" max="500" required>
+                                        <input type="number" id="num_goods_${i}" name="num_goods_${i}" class="form-control mt-2 mb-2 text-center" placeholder="Number of orders for truck ${i + 1}" min="1" required>
+                                        <div id="goods_${i}" class="p-4"></div>
+                                        <input type="number" id="num_addresses_${i}" name="num_addresses_${i}" class="form-control mt-2 mb-2 text-center" placeholder="number of addresses for truck ${i + 1}" min="1" required>
+                                        <div id="addresses_${i}" class="p-4"></div>
+                                        `;
+            }
+            for (let i = 0; i < numTrucks; i++) {
+                document.getElementById(`num_goods_${i}`).addEventListener('input', function () {
+                    const numGoods = this.value;
+                    const goodsDiv = document.getElementById(`goods_${i}`);
+                    goodsDiv.innerHTML = '';
+                    for (let j = 0; j < numGoods; j++) {
+                        goodsDiv.innerHTML += `
+                        <input type="number" id="good_value_${i}_${j}" name="good_value_${i}_${j}" class="form-control mt-2 mb-2 text-center" placeholder="Order ${j + 1} value" min="1" required>
+                        <input type="number" id="good_weight_${i}_${j}" name="good_weight_${i}_${j}" class="form-control mt-2 mb-2 text-center mb-5" placeholder="Order ${j + 1} weight (kg)" min="1" required>
+                        `}
+
+                });
+                document.getElementById(`num_addresses_${i}`).addEventListener('input', function () {
+                    const numAddresses = this.value;
+                    const addressesDiv = document.getElementById(`addresses_${i}`);
+                    addressesDiv.innerHTML = '';
+                    for (let a = 0; a < numAddresses; a++) {
+                        addressesDiv.innerHTML += `<div class="mb-5">`
+                        for (let b = 0; b < numAddresses; b++) {
+                            if (a != b) {
+                                addressesDiv.innerHTML += `
+                                                           <input type="number" id="time_${i}_${a}_${b}" name="time_${i}_${a}_${b}" class="form-control mt-2 mb-2 text-center" placeholder="Time from address ${a + 1} to address ${b + 1} (minute)" required>`;
+                            }
+                        }
+                        addressesDiv.innerHTML += `</div>`
+                    }
+                });
+            }
+        });
+
+
+
+
+
+    </script>
+
+    <!-- Vendor JS Files -->
+    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+    <script src="{% static 'assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+
+    <!-- Template Main JS File -->
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+{% load static %}
+
+<!-- ======= Header ======= -->
+<header id="header" class="header fixed-top d-flex align-items-center">
+    <div class="container d-flex align-items-center justify-content-between">
+
+        <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto me-lg-0">
+
+            <img src="{% static 'image/869a224406f35106d1637648723e4745.png' %}" alt="Smart Delivery" width="100px">
+
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}"
+                    {% if '/' == request.path %}
+                      class="active"
+                    {% else %}
+                        class=""
+                    {% endif%}
+                         >Home</a></li>
+                <li><a href="{% url 'about' %}"
+                    {% if 'about' in request.path %}
+                      class="active"
+                    {% else %}
+                        class=""
+                    {%endif %}
+                    >About</a></li>
+                <li><a href="{% url 'smartTrucks' %}" 
+                    {% if 'smartTrucks' in request.path or 'solve' in request.path %} 
+                    class="active" 
+                    {% else %} 
+                    class="" 
+                    {% endif%}
+                    >Smart trucks</a></li>
+                    <li><a href="{% url 'ourTeam' %}" 
+                        {% if 'ourTeam' in request.path %} 
+                        class="active" 
+                        {% else %} 
+                        class="" 
+                        {% endif%}
+                        >Our team</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+
+        <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+        <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+    </div>
+</header><!-- End Header -->

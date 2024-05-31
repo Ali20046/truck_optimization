@@ -1,0 +1,45 @@
+{% extends 'base.html'%}
+{% load static%}
+
+{% block content %}
+<main id="main" style="margin-top: 20px;">
+    <section id="contact" class="contact">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Smart Delivery</h2>
+                <p>The <span>result</span></p>
+            </div>
+
+            {% for truck in trucks %}
+            <div class="row gy-4 mb-5">
+                <h3 class="text-center">Truck {{ forloop.counter }}</h3>
+                <div class="info-item d-flex justify-content-between">
+                    <div>
+                        <i class="icon bi bi-truck flex-shrink-0"></i>
+                    </div>
+                    <div>
+                        <h3 class="mb-4">Total value for selected orders: {{ truck.optimal_value }}</h3>
+                        <p class="my-2" style="font-size: large;">Selected orders:</p>
+
+                        {% for value, weight in truck.selected_goods %}
+                        <p>Value: {{ value }} - Weight: {{ weight }} (kg)</p>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        <h3 class="mb-4">Path duration: {{ truck.distance }} (minute)</h3>
+                        <p class="my-2" style="font-size: large;">The path:</p>
+                            {% for path in truck.path %}
+                            <p>Address: {{path}}</p>
+                            {% endfor %}
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

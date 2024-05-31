@@ -1,0 +1,42 @@
+{% extends 'base.html'%}
+{% load static%}
+
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="hero d-flex align-items-center section-bg">
+    <div class="container">
+        <div class="row justify-content-between gy-5">
+            <div
+                class="col-lg-5 order-2 order-lg-1 d-flex flex-column justify-content-center align-items-center align-items-lg-start text-center text-lg-start">
+                <h2 data-aos="fade-up">Find Your Smart<br>Path</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Sed autem laudantium dolores. Voluptatem itaque ea
+                    consequatur eveniet. Eum quas beatae cumque eum quaerat.</p>
+
+            </div>
+            <div class="col-lg-5 order-1 order-lg-2 text-center text-lg-start">
+                <img src="{% static 'image\images.jpeg' %}" class="img-fluid" width="85%" alt="Smart Delivery"
+                    data-aos="zoom-out" data-aos-delay="300">
+            </div>
+        </div>
+    </div>
+</section>
+<section id="contact" class="contact">
+    <div class="container" data-aos="fade-up">
+        <div class="section-header">
+            <h2>Smart Delivery</h2>
+            <p>How our site is working <span>?</span></p>
+        </div>
+        
+            <h3 class="pb-3" style="padding-left: 100px;">The first click on smart trucks in navbar</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then enter number of truks</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then enter orders for every truck</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then enter value and weight for every order</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then enter number of adresses for every truck</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then enter the time between every two addresses for every truck</h3>
+            <h3 class="pb-3" style="padding-left: 100px;">Then click on find result</h3>
+        
+
+    </div>
+</section>
+{% endblock content %}
